@@ -1,0 +1,228 @@
+# -----------------------------------------------------------------------------
+# Mod Key (Mod4: Super, Mod1: Alt)
+set $mod Mod4
+
+
+# -----------------------------------------------------------------------------
+# Mouse Focus (Default: yes)
+focus_follows_mouse yes
+
+
+# -----------------------------------------------------------------------------
+# Borders & Gaps
+
+set $border_size 1
+set $gap_size 0
+
+# Remove title bars and add borders
+default_border pixel $border_size
+default_floating_border normal
+for_window [class=.*] border pixel 1
+smart_borders on
+
+# Gaps
+gaps inner $gap_size
+smart_gaps on
+
+
+# -----------------------------------------------------------------------------
+# Font
+font xft:Roboto 11
+
+
+# -----------------------------------------------------------------------------
+# Workspace Names
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
+
+
+# -----------------------------------------------------------------------------
+# i3 Keybindings
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+n split h
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Mod1+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Resize quick shortcuts
+bindsym $mod+Shift+Right resize grow   width  10 px or 1 ppt
+bindsym $mod+Shift+Left  resize shrink width  10 px or 1 ppt
+bindsym $mod+Shift+Up    resize grow   height 10 px or 1 ppt
+bindsym $mod+Shift+Down  resize shrink height 10 px or 1 ppt
+
+
+# -----------------------------------------------------------------------------
+# Colors
+
+# Focused colors
+set $f_border     "#69748d"
+set $f_indicator  "#5294e2"
+set $fi_bg        "#2f343f"
+
+# Unfocused colors
+set $uf_border    "#282c35"
+set $uf_indicator "#282c35"
+
+# Title text color
+set $f_text       "#ffffff"
+set $f_text_h     "#ffffff"
+set $uf_text      "#a2a9ba"
+
+#<colorclass>           <border>    <background> <text>    <indicator>   <child_border>
+client.focused          $f_border   $f_border    $f_text_h $f_indicator  $f_border
+client.focused_inactive $uf_border  $fi_bg       $f_text   $uf_indicator $uf_border
+client.unfocused        $uf_border  $uf_border   $uf_text  $uf_indicator $uf_border
+client.urgent           $f_border   $uf_border   $f_text   $f_indicator  $uf_border
+
+
+# -----------------------------------------------------------------------------
+# Custom Keybindings
+
+# Default terminal
+bindsym $mod+Return exec konsole
+
+# Application runner
+bindsym $mod+space exec --no-startup-id rofi -show drun
+bindsym Mod1+space exec --no-startup-id rofi -show
+
+# Audio controls
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10%
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10%
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+# Brightness controls
+#bindsym XF86MonBrightnessUp exec ruby $HOME/Scripts/change_brightness.rb inc
+#bindsym XF86MonBrightnessDown exec ruby $HOME/Scripts/change_brightness.rb dec
+
+
+# -----------------------------------------------------------------------------
+# Startup
+
+# Set wallpaper
+exec_always --no-startup-id sleep 5; nitrogen --restore
+
+# Compositor
+exec --no-startup-id compton &
+
+# PulseAudio
+#exec --no-startup-id pulseaudio --start
+
+
+# -----------------------------------------------------------------------------
+# Plasma Integration
+
+# Try to kill the wallpaper set by Plasma (it takes up the entire workspace and
+# hides everything)
+exec --no-startup-id wmctrl -c Plasma
+for_window [title="Desktop — Plasma"] kill, floating enable, border none
+
+# Kill krunner on startup
+exec_always --no-startup-id killall krunner
+
+# Avoid tiling popups, dropdown windows from plasma
+for_window [class="plasmashell"] floating enable, border none
+for_window [class="Plasma"] floating enable, border none
+for_window [class="plasmashell" title="plasma-desktop"] floating enable, border none
+for_window [class="Klipper"] floating enable
+for_window [class="Plasmoidviewer"] floating enable, border none
+
+
+# -----------------------------------------------------------------------------
+# Window Rules
+
+# Avoid tiling for non-Plasma stuff
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [class="Nitrogen"] floating enable
+# Telegram media viewer popup
+for_window [class="Telegram" title="Media viewer"] floating enable, border none, move position 0 px 0 px
+for_window [instance="__scratchpad"] floating enable
+# Prevent notifications and plasma shell popups from stealing focus
+no_focus [class="plasmashell"]
+
+for_window [tiling class="Telegram"] resize set width 20 ppt

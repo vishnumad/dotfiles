@@ -1,0 +1,9 @@
+[user]
+	name = Vishnu
+	email = vmadhusoodanan95@gmail.com
+[core]
+	autocrlf = input
+	safecrlf = true
+
+[alias]
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
