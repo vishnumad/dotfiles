@@ -1,0 +1,76 @@
+[Audio Preview Settings]
+Autoplay=false
+
+[DownloadDialog Settings]
+Height 1080=477
+Width 1920=700
+
+[FileDialogSize]
+Height 1080=586
+Width 1920=973
+
+[KFileDialog Settings]
+Recent Files[$e]=file:$HOME/Pictures/Backgrounds/1w8VyzK.jpg,file:$HOME/Downloads/alphablackcontrol-v5.plasmoid,file:$HOME/Pictures/Backgrounds/wheat-modified.png,file:$HOME/Pictures/Backgrounds/sJn6IIS.png
+Recent URLs[$e]=file:$HOME/Downloads/
+
+[KPropertiesDialog]
+Height 1080=449
+Width 1920=412
+
+[PlasmaRunnerManager]
+LaunchCounts=1 services_org.kde.ksysguard.desktop,4 services_org.kde.konsole.desktop,2 services_octopi.desktop,3 services_systemsettings.desktop
+pluginWhiteList=services,places,desktopsessions,PowerDevil,shell,bookmarks,recentdocuments,locations,baloosearch
+
+[PlasmaViews][Panel 1]
+alignment=132
+panelVisibility=0
+
+[PlasmaViews][Panel 1][Horizontal1024]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1152]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1200]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1280]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1366]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1440]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1600]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1680]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1900]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1916]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal1920]
+maxLength=1920
+minLength=1920
+thickness=30
+
+[PlasmaViews][Panel 1][Horizontal2048]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal800]
+thickness=45
+
+[PlasmaViews][Panel 1][Horizontal864]
+thickness=45
+
+[ScreenConnectors]
+0=eDP1
+
+[Updates]
+performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/obsolete_kickoffrc.js
