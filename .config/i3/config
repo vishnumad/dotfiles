@@ -11,13 +11,11 @@ focus_follows_mouse yes
 # -----------------------------------------------------------------------------
 # Borders & Gaps
 
-set $border_size 1
+set $border_size 2
 set $gap_size 0
 
 # Remove title bars and add borders
-default_border pixel $border_size
-default_floating_border normal
-for_window [class=.*] border pixel 1
+for_window [class=.*] border pixel $border_size
 smart_borders on
 
 # Gaps
