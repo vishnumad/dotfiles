@@ -1,7 +1,11 @@
+# i3 Stuff {{{
+
 # -----------------------------------------------------------------------------
 # Mod Key (Mod4: Super, Mod1: Alt)
 set $mod Mod4
 
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
 
 # -----------------------------------------------------------------------------
 # Mouse Focus (Default: yes)
@@ -12,9 +16,8 @@ focus_follows_mouse yes
 # Borders & Gaps
 
 set $border_size 2
-set $gap_size 0
+set $gap_size 10
 
-# Remove title bars and add borders
 for_window [class=.*] border pixel $border_size
 smart_borders on
 
@@ -44,12 +47,9 @@ set $ws8  "8"
 set $ws9  "9"
 set $ws10 "10"
 
+# }}}
 
-# -----------------------------------------------------------------------------
-# i3 Keybindings
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# i3 Keybindings {{{
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -128,18 +128,22 @@ bindsym $mod+Shift+Left  resize shrink width  10 px or 1 ppt
 bindsym $mod+Shift+Up    resize grow   height 10 px or 1 ppt
 bindsym $mod+Shift+Down  resize shrink height 10 px or 1 ppt
 
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
-# -----------------------------------------------------------------------------
-# Colors
+# }}}
+
+# Colors {{{
 
 # Focused colors
 set $f_border     "#69748d"
-set $f_indicator  "#5294e2"
+set $f_indicator  "#acb2c1"
 set $fi_bg        "#2f343f"
 
 # Unfocused colors
-set $uf_border    "#282c35"
-set $uf_indicator "#282c35"
+set $uf_border    "#292c37"
+set $uf_indicator "#292c37"
 
 # Title text color
 set $f_text       "#ffffff"
@@ -152,9 +156,9 @@ client.focused_inactive $uf_border  $fi_bg       $f_text   $uf_indicator $uf_bor
 client.unfocused        $uf_border  $uf_border   $uf_text  $uf_indicator $uf_border
 client.urgent           $f_border   $uf_border   $f_text   $f_indicator  $uf_border
 
+# }}}
 
-# -----------------------------------------------------------------------------
-# Custom Keybindings
+# Custom Keybindings {{{
 
 # Default terminal
 bindsym $mod+Return exec konsole
@@ -163,18 +167,9 @@ bindsym $mod+Return exec konsole
 bindsym $mod+space exec --no-startup-id rofi -show drun
 bindsym Mod1+space exec --no-startup-id rofi -show
 
-# Audio controls
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10%
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10%
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+# }}}
 
-# Brightness controls
-#bindsym XF86MonBrightnessUp exec ruby $HOME/Scripts/change_brightness.rb inc
-#bindsym XF86MonBrightnessDown exec ruby $HOME/Scripts/change_brightness.rb dec
-
-
-# -----------------------------------------------------------------------------
-# Startup
+# Startup Applications {{{
 
 # Set wallpaper
 exec_always --no-startup-id sleep 5; nitrogen --restore
@@ -182,12 +177,9 @@ exec_always --no-startup-id sleep 5; nitrogen --restore
 # Compositor
 exec --no-startup-id compton &
 
-# PulseAudio
-#exec --no-startup-id pulseaudio --start
+# }}}
 
-
-# -----------------------------------------------------------------------------
-# Plasma Integration
+# Plasma Integration {{{
 
 # Try to kill the wallpaper set by Plasma (it takes up the entire workspace and
 # hides everything)
@@ -198,15 +190,15 @@ for_window [title="Desktop — Plasma"] kill, floating enable, border none
 exec_always --no-startup-id killall krunner
 
 # Avoid tiling popups, dropdown windows from plasma
-for_window [class="plasmashell"] floating enable, border none
+for_window [class="plasmashell"] floating enable, border none, move up 2 px
 for_window [class="Plasma"] floating enable, border none
 for_window [class="plasmashell" title="plasma-desktop"] floating enable, border none
 for_window [class="Klipper"] floating enable
 for_window [class="Plasmoidviewer"] floating enable, border none
 
+# }}}
 
-# -----------------------------------------------------------------------------
-# Window Rules
+# Window Rules {{{
 
 # Avoid tiling for non-Plasma stuff
 for_window [window_role="pop-up"] floating enable
@@ -219,8 +211,12 @@ for_window [window_type="menu"] floating enable
 for_window [class="Nitrogen"] floating enable
 # Telegram media viewer popup
 for_window [class="Telegram" title="Media viewer"] floating enable, border none, move position 0 px 0 px
-for_window [instance="__scratchpad"] floating enable
+#for_window [instance="__scratchpad"] floating enable
+
 # Prevent notifications and plasma shell popups from stealing focus
 no_focus [class="plasmashell"]
 
+# Resize telegram to take up 20% of screen width
 for_window [tiling class="Telegram"] resize set width 20 ppt
+
+# }}}
