@@ -1,5 +1,12 @@
+[ActionsWidget]
+ColumnState=AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAboAAAACAQAAAQAAAAAAAAAAAAAAAGT/////AAAAgQAAAAAAAAACAAAA+gAAAAEAAAAAAAAAwAAAAAEAAAAAAAAD6AAAAABk
+
 [Audio Preview Settings]
 Autoplay=false
+
+[ConfigDialog]
+Height 1080=508
+Width 1920=591
 
 [DownloadDialog Settings]
 Height 1080=477
@@ -9,6 +16,9 @@ Width 1920=700
 Height 1080=586
 Width 1920=973
 
+[General]
+Number of Actions=0
+
 [KFileDialog Settings]
 Recent Files[$e]=file:$HOME/Pictures/Backgrounds/1w8VyzK.jpg,file:$HOME/Downloads/alphablackcontrol-v5.plasmoid,file:$HOME/Pictures/Backgrounds/wheat-modified.png,file:$HOME/Pictures/Backgrounds/sJn6IIS.png
 Recent URLs[$e]=file:$HOME/Downloads/
@@ -16,6 +26,9 @@ Recent URLs[$e]=file:$HOME/Downloads/
 [KPropertiesDialog]
 Height 1080=449
 Width 1920=412
+
+[Notification Messages]
+really_clear_history=true
 
 [PlasmaRunnerManager]
 LaunchCounts=1 services_org.kde.ksysguard.desktop,4 services_org.kde.konsole.desktop,2 services_octopi.desktop,3 services_systemsettings.desktop
