@@ -1,0 +1,3 @@
+[submodule ".themes/Ant-Dracula"]
+	path = .themes/Ant-Dracula
+	url = https://github.com/EliverLara/Ant-Dracula.git
