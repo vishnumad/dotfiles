@@ -28,8 +28,9 @@ smart_gaps on
 
 # -----------------------------------------------------------------------------
 # Font
-font xft:Roboto 11
-
+font pango:Roboto 11
+for_window [class=".*"] title_format " %title "
+title_align center
 
 # -----------------------------------------------------------------------------
 # Workspace Names
@@ -132,6 +133,16 @@ bindsym $mod+Shift+Down  resize shrink height 10 px or 1 ppt
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
+# Toggle gaps (https://www.reddit.com/r/i3wm/comments/5qyspk)
+bindsym $mod+g exec --no-startup-id "if [ $(i3-msg -t get_tree | jq -r \
+    'recurse(.nodes[]) | if .type == \\"workspace\\" and .name == \\"'`i3-msg \
+    -t get_workspaces | jq -r '.[] | if .[\\"focused\\"] then .[\\"name\\"] else \
+    empty end'`'\\" then .gaps.inner else empty end') -eq 0 ]; \
+    then \
+        i3-msg gaps inner current set 0; \
+    else \
+        i3-msg gaps inner current set $gap_size; fi"
+
 # }}}
 
 # Colors {{{
@@ -139,16 +150,16 @@ bindsym $mod+minus scratchpad show
 # Focused colors
 set $f_border     "#69748d"
 set $f_indicator  "#acb2c1"
-set $fi_bg        "#2f343f"
+set $fi_bg        "#292c37"
 
 # Unfocused colors
 set $uf_border    "#292c37"
 set $uf_indicator "#292c37"
 
 # Title text color
-set $f_text       "#ffffff"
-set $f_text_h     "#ffffff"
-set $uf_text      "#a2a9ba"
+set $f_text       "#f2f2f5"
+set $f_text_h     "#f2f2f5"
+set $uf_text      "#5c627b"
 
 #<colorclass>           <border>    <background> <text>    <indicator>   <child_border>
 client.focused          $f_border   $f_border    $f_text_h $f_indicator  $f_border
@@ -172,7 +183,7 @@ bindsym Mod1+space exec --no-startup-id rofi -show
 # Startup Applications {{{
 
 # Set wallpaper
-exec_always --no-startup-id sleep 5; nitrogen --restore
+exec_always --no-startup-id sleep 3; nitrogen --restore
 
 # Compositor
 exec --no-startup-id compton &
