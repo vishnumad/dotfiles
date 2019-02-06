@@ -94,7 +94,7 @@ immutability=1
 plugin=org.kde.plasma.userswitcher
 
 [Containments][1][Applets][52][Configuration]
-PreloadWeight=74
+PreloadWeight=36
 
 [Containments][1][Applets][52][Configuration][ConfigDialog]
 DialogHeight=540
@@ -160,7 +160,7 @@ immutability=1
 plugin=org.kde.plasma.avpager
 
 [Containments][1][Applets][62][Configuration]
-PreloadWeight=2
+PreloadWeight=0
 
 [Containments][1][Applets][62][Configuration][ConfigDialog]
 DialogHeight=540
@@ -174,7 +174,7 @@ immutability=1
 plugin=org.kde.activeWindowControl
 
 [Containments][1][Applets][63][Configuration]
-PreloadWeight=10
+PreloadWeight=0
 
 [Containments][1][Applets][63][Configuration][Appearance]
 fontSizeScale=1.05
@@ -190,7 +190,7 @@ immutability=1
 plugin=org.kde.plasma.eventcalendar
 
 [Containments][1][Applets][64][Configuration]
-PreloadWeight=25
+PreloadWeight=0
 
 [Containments][1][Applets][64][Configuration][ConfigDialog]
 DialogHeight=540
@@ -210,7 +210,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][1][Applets][7][Configuration]
-PreloadWeight=92
+PreloadWeight=34
 SystrayContainmentId=8
 
 [Containments][1][Applets][7][Configuration][Containments][8]
@@ -268,7 +268,7 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][8][Applets][36][Configuration]
-PreloadWeight=0
+PreloadWeight=10
 
 [Containments][8][Applets][36][Configuration][ConfigDialog]
 DialogHeight=540
@@ -279,7 +279,7 @@ immutability=1
 plugin=org.kde.plasma.clipboard
 
 [Containments][8][Applets][37][Configuration]
-PreloadWeight=47
+PreloadWeight=0
 
 [Containments][8][Applets][38]
 immutability=1
@@ -339,14 +339,14 @@ immutability=1
 plugin=org.kde.plasma.bluetooth
 
 [Containments][8][Applets][44][Configuration]
-PreloadWeight=0
+PreloadWeight=5
 
 [Containments][8][Applets][45]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][8][Applets][45][Configuration]
-PreloadWeight=86
+PreloadWeight=38
 
 [Containments][8][Applets][45][Configuration][ConfigDialog]
 DialogHeight=540
@@ -357,7 +357,7 @@ immutability=1
 plugin=com.github.zren.alphablackcontrol
 
 [Containments][8][Applets][48][Configuration]
-PreloadWeight=17
+PreloadWeight=5
 
 [Containments][8][Applets][48][Configuration][ConfigDialog]
 DialogHeight=540

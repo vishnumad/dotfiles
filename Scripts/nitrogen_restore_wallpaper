@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# Restore wallpaper with nitrogen
-nitrogen --restore
-
