@@ -1,0 +1,51 @@
+configuration {
+    show-icons: false;
+}
+
+* {
+    background-color: #292c37;
+    text-color: white;
+    font: "Roboto 12";
+}
+
+#prompt {
+    padding: 2px 8px;
+}
+
+#entry {
+    padding: 2px;
+}
+
+#window {
+    location: north;
+    width: 100%;
+    padding: 4px;
+    children: [ horibox ];
+}
+
+#horibox {
+    orientation: horizontal;
+    children: [ prompt, entry, listview ];
+}
+
+#listview {
+    layout: horizontal;
+    spacing: 15px;
+    lines: 100;
+}
+
+#entry {
+    expand: false;
+    width: 10em;
+}
+
+#element {
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+#element selected {
+    background-color: #5294e2;
+}
+
+/* vim:ft=css
