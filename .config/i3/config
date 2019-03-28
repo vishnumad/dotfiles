@@ -28,7 +28,8 @@ smart_gaps on
 
 # -----------------------------------------------------------------------------
 # Font
-font pango:Roboto 11
+set $main_font pango:Roboto 11
+font $main_font
 for_window [class=".*"] title_format " %title "
 title_align center
 
@@ -57,8 +58,10 @@ bindsym $mod+Shift+q kill
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -69,10 +72,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left 20
+bindsym $mod+Shift+j move down 20
+bindsym $mod+Shift+k move up 20
+bindsym $mod+Shift+l move right 20
 
 # split in horizontal orientation
 bindsym $mod+n split h
@@ -124,14 +127,20 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Resize quick shortcuts
-bindsym $mod+Shift+Right resize grow   width  10 px or 1 ppt
-bindsym $mod+Shift+Left  resize shrink width  10 px or 1 ppt
-bindsym $mod+Shift+Up    resize grow   height 10 px or 1 ppt
-bindsym $mod+Shift+Down  resize shrink height 10 px or 1 ppt
+bindsym $mod+Shift+Right resize grow   width  80 px or 4 ppt
+bindsym $mod+Shift+Left  resize shrink width  80 px or 4 ppt
+bindsym $mod+Shift+Up    resize grow   height 40 px or 2 ppt
+bindsym $mod+Shift+Down  resize shrink height 40 px or 2 ppt
 
 # Scratchpad
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
+
+# Sticky window across all workspaces
+bindsym $mod+Shift+w sticky toggle
+
+# Switch back-and-forth between workspaces
+bindsym $mod+Tab workspace back_and_forth
 
 # Toggle gaps (https://www.reddit.com/r/i3wm/comments/5qyspk)
 bindsym $mod+g exec --no-startup-id "if [ $(i3-msg -t get_tree | jq -r \
@@ -156,7 +165,7 @@ set $fi_bg        "#292c37"
 set $uf_border    "#292c37"
 set $uf_indicator "#292c37"
 
-# Title text color
+# Title text colors
 set $f_text       "#f2f2f5"
 set $f_text_h     "#f2f2f5"
 set $uf_text      "#5c627b"
@@ -172,7 +181,17 @@ client.urgent           $f_border   $uf_border   $f_text   $f_indicator  $uf_bor
 # Custom Keybindings {{{
 
 # Default terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec urxvtc
+bindsym $mod+Shift+Return exec xterm
+
+# Firefox URL bar focus
+bindsym --release $mod+u exec --no-startup-id xdotool key "F6"
+
+# Volume Function keys
+bindsym F1 exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute"
+bindsym F2 exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
+bindsym F3 exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
+bindsym F4 exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
 
 # Application runner
 bindsym $mod+space exec --no-startup-id rofi -show drun
@@ -183,19 +202,26 @@ bindsym Mod1+space exec --no-startup-id rofi -show
 # Startup Applications {{{
 
 # Set wallpaper
-exec_always --no-startup-id sleep 3; nitrogen --restore
+exec --no-startup-id ~/.fehbg &
+exec --no-startup-id sleep 3 && ~/.fehbg &
+
+# Urxvt Daemon
+exec --no-startup-id urxvtd -q -f -o
 
 # Compositor
 exec --no-startup-id compton &
+
+# Alt-Tab
+exec_always --no-startup-id alttab -d 1 \
+            -bg $uf_border -fg $f_text -frame $f_border -font "$main_font" \
+            -t 200x150 -i 1x1 -s 2 -theme 'La Capitaine'
 
 # }}}
 
 # Plasma Integration {{{
 
-# Try to kill the wallpaper set by Plasma (it takes up the entire workspace and
-# hides everything)
-exec --no-startup-id wmctrl -c Plasma
-for_window [title="Desktop — Plasma"] kill, floating enable, border none
+# Kill Plasma's desktop
+for_window [class="plasmashell" title="Desktop — Plasma"] kill
 
 # Kill krunner on startup
 exec_always --no-startup-id killall krunner
@@ -223,11 +249,15 @@ for_window [class="Nitrogen"] floating enable
 # Telegram media viewer popup
 for_window [class="Telegram" title="Media viewer"] floating enable, border none, move position 0 px 0 px
 #for_window [instance="__scratchpad"] floating enable
+for_window [window_type="notification"] floating enable
 
 # Prevent notifications and plasma shell popups from stealing focus
 no_focus [class="plasmashell"]
 
 # Resize telegram to take up 20% of screen width
 for_window [tiling class="Telegram"] resize set width 20 ppt
+
+# Android Studio welcome screen
+for_window [class="jetbrains-studio" title="Welcome to Android Studio"] floating enable
 
 # }}}
