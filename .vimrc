@@ -21,6 +21,12 @@ set nocompatible
 
 inoremap jk <esc>
 
+set background=dark
+set t_Co=256
+
+set breakindent
+set linebreak
+
 " Show line numbers
 set number
 
@@ -38,6 +44,30 @@ let g:airline#extensions#tabline#enabled = 1
 
 " Airline theme
 let g:airline_theme='deus'
+
+
+"" air-line
+let g:airline_powerline_fonts = 1
+"
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+
+" unicode symbols
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 syntax on
 
@@ -68,7 +98,8 @@ let &t_EI = "\<Esc>[2 q"
 " Highlight cursorline
 set cursorline
 hi CursorLine cterm=NONE ctermbg=0 ctermfg=NONE
-
+hi MatchParen cterm=NONE ctermbg=8 ctermfg=magenta
+hi Folded ctermbg=8
 " }}}
 
 " Spaces/Tabs {{{
