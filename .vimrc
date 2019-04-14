@@ -45,29 +45,22 @@ let g:airline#extensions#tabline#enabled = 1
 " Airline theme
 let g:airline_theme='deus'
 
-
-"" air-line
+" Airline font symbols
 let g:airline_powerline_fonts = 1
-"
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
-
-" unicode symbols
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = 'Ɇ'
-let g:airline_symbols.whitespace = 'Ξ'
 
 " powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
+let g:airline_symbols.branch = 'br'
+let g:airline_symbols.readonly = 'ro'
 let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
 
 syntax on
 
@@ -98,8 +91,13 @@ let &t_EI = "\<Esc>[2 q"
 " Highlight cursorline
 set cursorline
 hi CursorLine cterm=NONE ctermbg=0 ctermfg=NONE
+
+" Parentheses highlight color
 hi MatchParen cterm=NONE ctermbg=8 ctermfg=magenta
+
+" Folded section color
 hi Folded ctermbg=8
+
 " }}}
 
 " Spaces/Tabs {{{
