@@ -200,13 +200,15 @@ bindsym Mod1+space exec --no-startup-id rofi -show
 
 # Set wallpaper
 exec --no-startup-id ~/.fehbg &
-exec --no-startup-id sleep 3 && ~/.fehbg &
 
 # Urxvt Daemon
 exec --no-startup-id urxvtd -q -f -o
 
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 # Compositor
-exec --no-startup-id compton &
+# exec --no-startup-id compton &
 
 # Alt-Tab
 exec_always --no-startup-id alttab -d 1 \
@@ -215,26 +217,8 @@ exec_always --no-startup-id alttab -d 1 \
 
 # }}}
 
-# Plasma Integration {{{
-
-# Kill Plasma's desktop
-for_window [class="plasmashell" title="Desktop — Plasma"] kill
-
-# Kill krunner on startup
-exec_always --no-startup-id killall krunner
-
-# Avoid tiling popups, dropdown windows from plasma
-for_window [class="plasmashell"] floating enable, border none, move up 2 px
-for_window [class="Plasma"] floating enable, border none
-for_window [class="plasmashell" title="plasma-desktop"] floating enable, border none
-for_window [class="Klipper"] floating enable
-for_window [class="Plasmoidviewer"] floating enable, border none
-
-# }}}
-
 # Window Rules {{{
 
-# Avoid tiling for non-Plasma stuff
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
@@ -242,22 +226,22 @@ for_window [window_role="Preferences"] floating enable
 for_window [window_role="About"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
-for_window [class="Nitrogen"] floating enable
 
 # Telegram media viewer popup
 for_window [class="Telegram" title="Media viewer"] floating enable, border none, move position 0 px 0 px
-#for_window [window_type="notification"] floating enable, move down 30 px
-
-# Prevent notifications and plasma shell popups from stealing focus
-no_focus [class="plasmashell"]
 
 # Resize telegram to take up 20% of screen width
-for_window [tiling class="Telegram"] resize set width 20 ppt
+# for_window [tiling class="Telegram"] resize set width 20 ppt
 
 # Android Studio welcome screen
 for_window [class="jetbrains-studio" title="Welcome to Android Studio"] floating enable
 
 # Set floating terminal to floating
 for_window [tiling instance="floating_term"] floating enable
+
+# Xfce volume mixer
+for_window [instance="pavucontrol"] floating enable
+
+for_window [window_type="notification"] move up 30 px
 
 # }}}
