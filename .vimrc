@@ -9,8 +9,6 @@ endif
 
 " Load plugins
 call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'        " vim-airline
-Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " }}}
@@ -30,44 +28,23 @@ set linebreak
 " Show line numbers
 set number
 
-" Hide vim's insert/visual/normal hints
-set noshowmode
-
 " Prevent delay for lightline when switching modes
 set ttimeoutlen=50
 
 " Save files as sudo with :W
 cmap W w !sudo tee % > /dev/null
 
-" Airline tabs
-let g:airline#extensions#tabline#enabled = 1
-
-" Airline theme
-let g:airline_theme='deus'
-
-" Airline font symbols
-let g:airline_powerline_fonts = 1
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = 'br'
-let g:airline_symbols.readonly = 'ro'
-let g:airline_symbols.linenr = ''
-let g:airline_symbols.maxlinenr = ''
-
 syntax on
-
-set laststatus=2
 
 set scrolljump=5
 set scrolloff=3
+
+" vim command prompt
+nnoremap <Space> :
+vnoremap <Space> :
+
+" Quickly Show/Switch Buffers
+nnoremap <F5> :buffers<CR>:buffer<Space>
 
 set splitright
 set splitbelow
@@ -83,10 +60,39 @@ set wildmode=longest:full,full
 set incsearch
 set hlsearch
 
-" Change cursor in Insert mode
+" Change cursor in different modes
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
+
+function! CurrentGitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatusGitInfo()
+  let l:branchname = CurrentGitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+" Status Line
+set laststatus=2
+set statusline=
+set statusline+=%1*\ %n\ %*            " Buffer number
+set statusline+=\ %f%h%w\ %m           " File path
+set statusline+=%2*\ %R\ %*            " Read-only
+set statusline+=%=                     " Spacer
+set statusline+=\ %{StatusGitInfo()}   " Git branch
+set statusline+=%1*\ %-3c\ \ %4l/%-4L\ \ %3P\ %*   " Line/Column Info
+
+" Status line color
+hi StatusLine cterm=NONE ctermbg=0 ctermfg=white
+hi StatusLineNC cterm=NONE ctermbg=NONE ctermfg=8
+hi User1 cterm=NONE ctermbg=8 ctermfg=NONE
+hi User2 cterm=NONE ctermbg=0 ctermfg=red
+
+" Split characters
+set fillchars+=vert:│
+hi VertSplit cterm=NONE ctermbg=NONE ctermfg=8
 
 " Highlight cursorline
 set cursorline
@@ -97,6 +103,9 @@ hi MatchParen cterm=NONE ctermbg=8 ctermfg=magenta
 
 " Folded section color
 hi Folded ctermbg=8
+
+" Selection color
+hi Visual ctermbg=4 ctermfg=0
 
 " }}}
 
@@ -119,6 +128,8 @@ vnoremap <C-d> "+d
 " }}}
 
 " Auto Groups {{{
+
+"autocmd FileType netrw nnoremap q :bd<CR>
 
 augroup configgroup
     autocmd!
@@ -154,7 +165,7 @@ set foldenable
 set foldmethod=marker
 set foldlevel=0
 set modelines=1
-nnoremap <space> za
+nnoremap <Tab> za
 
 " }}}
 
