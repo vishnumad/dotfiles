@@ -28,7 +28,7 @@ smart_gaps on
 
 # -----------------------------------------------------------------------------
 # Font
-set $main_font pango:Roboto 11
+set $main_font pango:Input 10
 font $main_font
 for_window [class=".*"] title_format " %title "
 title_align center
@@ -184,36 +184,36 @@ client.urgent           $f_border   $uf_border   $f_text   $f_indicator  $uf_bor
 bindsym $mod+Return exec urxvtc
 bindsym $mod+Shift+Return exec --no-startup-id urxvtc -name "floating_term" -geometry 120x40
 
-# Volume Function keys
-bindsym F1 exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute"
-bindsym F2 exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
-bindsym F3 exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
-bindsym F4 exec qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
+# XF86 Keys
+bindsym XF86AudioMicMute exec --no-startup-id $HOME/scripts/mute_mic
 
 # Application runner
 bindsym $mod+space exec --no-startup-id rofi -show drun
+
+# Show open windows
 bindsym Mod1+space exec --no-startup-id rofi -show
+bindsym Mod1+Tab exec --no-startup-id rofi -show
 
 # }}}
 
 # Startup Applications {{{
 
 # Set wallpaper
-exec --no-startup-id ~/.fehbg &
+exec --no-startup-id $HOME/.fehbg &
 
 # Urxvt Daemon
 exec --no-startup-id urxvtd -q -f -o
 
 # Polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Compositor
 # exec --no-startup-id compton &
 
 # Alt-Tab
-exec_always --no-startup-id alttab -d 1 \
-            -bg $uf_border -fg $f_text -frame $f_border -font "$main_font" \
-            -t 200x150 -i 1x1 -s 2 -theme 'La Capitaine'
+# exec_always --no-startup-id alttab -d 1 \
+#             -bg $uf_border -fg $f_text -frame $f_border -font "$main_font" \
+#             -t 200x150 -i 1x1 -s 2 -theme 'La Capitaine'
 
 # }}}
 

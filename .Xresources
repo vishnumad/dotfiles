@@ -23,9 +23,8 @@ URxvt.scrollBar: false
 URxvt.internalBorder: 8
 
 ! URXVT Font
-!URxvt*font: xft:Iosevka Anonymous Pro:size=12
-URxvt*font: xft:Roboto Mono:style=Medium:size=11, xft:RobotoMono Nerd Font Mono:size=11, xft:DejaVuSansMono Nerd Font Mono:size=11
-URxvt*boldFont: xft:Roboto Mono:style=Bold:size=11, xft:RobotoMono Nerd Font Mono:size=11, xft:DejaVuSansMono Nerd Font Mono:size=11
+URxvt*font: xft:Input Mono Narrow:size=11, xft:RobotoMono Nerd Font Mono:size=11, xft:DejaVuSansMono Nerd Font Mono:size=11
+!URxvt*boldFont: xft:Roboto Mono:style=Bold:size=11, xft:RobotoMono Nerd Font Mono:size=11, xft:DejaVuSansMono Nerd Font Mono:size=11
 URxvt*letterSpace: 0
 
 ! Perl Extensions
@@ -38,17 +37,19 @@ URxvt.keysym.Shift-Control-t: perl:new-window
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 URxvt.keyxym.Shift-Control-V: eval:paste_clipboard
 
+! Padding Color
+URxvt.borderColor: #2f343f
+
 ! Colors
 
 ! special
 *.foreground:   #e9efff
 *.background:   #2f343f
 *.cursorColor:  #e9efff
-URxvt.borderColor: #2f343f
 
 ! black
-*.color0:       #404552
-*.color8:       #4c5262
+*.color0:       #454c5c
+*.color8:       #5b6479
 
 ! red
 *.color1:       #e18f93
@@ -77,3 +78,4 @@ URxvt.borderColor: #2f343f
 ! white
 *.color7:       #fcfcfc
 *.color15:      #fcfcfc
+

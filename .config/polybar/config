@@ -6,8 +6,8 @@ bottom = false
 fixed-center = true
 
 ; FONTS
-font-0 = Roboto:size=10;3
-;font-0 = t cherry:size=13;2
+font-0 = Input:size=10;3
+font-1 = RobotoMono Nerd Font Mono:size=8;2
 
 ; COLORS
 background = #292c37
@@ -15,12 +15,12 @@ background = #292c37
 ; BAR MODULES
 modules-left = i3
 modules-center = time
-modules-right =
+modules-right = player-mpris-tail
 
 ; SYSTEM TRAY
 tray-position = right
-tray-padding = 4
-tray-maxsize = 18
+tray-padding = 8
+;tray-background = #69748D
 
 
 [module/i3]
@@ -29,24 +29,24 @@ type = internal/i3
 wrapping-scroll = false
 
 label-focused = %name%
-label-focused-foreground = #F2F2F5
-label-focused-background = #69748D
-label-focused-padding = 6
+label-focused-foreground =   #F2F2F5
+label-focused-background =   #69748D
+label-focused-padding =      2
 
 label-visible = %name%
-label-visible-foreground = #F2F2F5
+label-visible-foreground =   #F2F2F5
 label-visible-background =
-label-visible-padding = 6
+label-visible-padding =      2
 
 label-unfocused = %name%
 label-unfocused-foreground = #5C627B
 label-unfocused-background =
-label-unfocused-padding = 6
+label-unfocused-padding =    2
 
 label-urgent = %name%
-label-urgent-foreground = #5294E2
+label-urgent-foreground =    #5294E2
 label-urgent-background =
-label-urgent-padding = 6
+label-urgent-padding =       2
 
 
 [module/time]
@@ -55,6 +55,12 @@ type = custom/script
 ;            Wed Apr 10, 10:43 AM
 exec = date '+%a %b %-d, %-I:%M %p'
 interval = 5
-label-padding = 4
+label-padding = 2
+
+[module/player-mpris-tail]
+type = custom/script
+exec = ~/scripts/player-mpris-tail.py --icon-playing '契' --icon-paused '' --icon-stopped 'S' -f '{:artist:t18:{artist}:}{:artist: - :}{:t20:{title}:}  %{A1:~/scripts/player-mpris-tail.py previous:} 玲%{A} %{A1:~/scripts/player-mpris-tail.py play-pause:} {icon-reversed} %{A} %{A1:~/scripts/player-mpris-tail.py next:}怜 %{A}   '
+tail = true
+label = %output%
 
 ; vim:ft=dosini
