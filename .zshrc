@@ -44,7 +44,7 @@ do
 done
 
 # Prompt Customization
-MNML_RPROMPT=(mnml_git 'mnml_cwd 5 8')
+MNML_RPROMPT=(mnml_err mnml_git 'mnml_cwd 5 8')
 MNML_INFOLN=(mnml_err mnml_jobs mnml_uhp)
 
 # Lazy load NVM
@@ -110,3 +110,4 @@ bindkey '^[[Z' reverse-menu-complete
 export PATH=$HOME/.gem/ruby/2.5.0/bin:$PATH
 export PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+
