@@ -16,7 +16,7 @@ focus_follows_mouse yes
 # Borders & Gaps
 
 set $border_size 2
-set $gap_size 10
+set $gap_size 8
 
 for_window [class=.*] border pixel $border_size
 smart_borders on
@@ -181,11 +181,16 @@ client.urgent           $f_border   $uf_border   $f_text   $f_indicator  $uf_bor
 # Custom Keybindings {{{
 
 # Default terminal
-bindsym $mod+Return exec urxvtc
-bindsym $mod+Shift+Return exec --no-startup-id urxvtc -name "floating_term" -geometry 120x40
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # XF86 Keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/scripts/volume -i 5
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/scripts/volume -d 5
+bindsym XF86AudioMute exec --no-startup-id $HOME/scripts/volume -t
 bindsym XF86AudioMicMute exec --no-startup-id $HOME/scripts/mute_mic
+
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/scripts/brightness inc
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/scripts/brightness dec
 
 # Application runner
 bindsym $mod+space exec --no-startup-id rofi -show drun
@@ -201,14 +206,14 @@ bindsym Mod1+Tab exec --no-startup-id rofi -show
 # Set wallpaper
 exec --no-startup-id $HOME/.fehbg &
 
-# Urxvt Daemon
-exec --no-startup-id urxvtd -q -f -o
+# Notification daemon
+exec --no-startup-id dunst
 
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Compositor
-# exec --no-startup-id compton &
+exec --no-startup-id compton &
 
 # Alt-Tab
 # exec_always --no-startup-id alttab -d 1 \
