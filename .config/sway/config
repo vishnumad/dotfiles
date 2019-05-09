@@ -1,0 +1,268 @@
+# Sway Stuff {{{
+
+# -----------------------------------------------------------------------------
+# Mod Key (Mod4: Super, Mod1: Alt)
+set $mod Mod4
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# -----------------------------------------------------------------------------
+# Mouse Focus (Default: yes)
+focus_follows_mouse yes
+
+
+# -----------------------------------------------------------------------------
+# Borders & Gaps
+
+set $border_size 2
+set $gap_size 8
+
+default_border pixel $border_size
+# default_border normal 0
+default_floating_border normal 0
+smart_borders on
+
+# Gaps
+gaps inner $gap_size
+smart_gaps on
+
+
+# -----------------------------------------------------------------------------
+# Font
+set $main_font pango:Input 10
+font $main_font
+title_align left
+
+# -----------------------------------------------------------------------------
+# Workspace Names
+
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
+
+# }}}
+
+# Sway Keybindings {{{
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec \
+    "swaynag -t warning -m 'Do you want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'"
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left 20
+bindsym $mod+Shift+j move down 20
+bindsym $mod+Shift+k move up 20
+bindsym $mod+Shift+l move right 20
+
+# Container splitting
+bindsym $mod+n split h
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Mod1+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Resize quick shortcuts
+bindsym $mod+Shift+Right resize grow   width  80 px or 4 ppt
+bindsym $mod+Shift+Left  resize shrink width  80 px or 4 ppt
+bindsym $mod+Shift+Up    resize grow   height 40 px or 2 ppt
+bindsym $mod+Shift+Down  resize shrink height 40 px or 2 ppt
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Sticky window across all workspaces
+bindsym $mod+Shift+w sticky toggle
+
+# Switch back-and-forth between workspaces
+bindsym $mod+Tab workspace back_and_forth
+
+# Enable/Disable gaps
+bindsym $mod+g exec swaymsg gaps inner current set 0
+bindsym $mod+Shift+g exec swaymsg gaps inner current set $gap_size
+
+# }}}
+
+# Colors {{{
+
+# Focused colors
+set $border_f   "#69748D"
+set $indic_f    "#ACB2C1"
+set $bg_f       "#69748D"
+set $bg_fi      "#292C37"
+set $text_f     "#F2F2F5"
+set $text_fi    "#F2F2F5"
+
+# Unfocused colors
+set $border_uf  "#292C37"
+set $indic_uf   "#292C37"
+set $text_uf    "#5C627B"
+set $bg_uf      "#292C37"
+
+#<colorclass>           <border>   <bg>   <text>   <indicator> <child_border>
+client.focused          $border_f  $bg_f  $text_f  $indic_f    $border_f
+client.focused_inactive $border_uf $bg_fi $text_fi $indic_uf   $border_uf
+client.unfocused        $border_uf $bg_uf $text_uf $indic_uf   $border_uf
+client.urgent           $border_f  $bg_uf $text_f  $indic_f    $border_uf
+
+# }}}
+
+# Custom Keybindings {{{
+
+# Default terminal
+bindsym $mod+Return exec --no-startup-id alacritty
+
+# XF86 Keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/scripts/volume -i 5
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/scripts/volume -d 5
+bindsym XF86AudioMute exec --no-startup-id $HOME/scripts/volume -t
+bindsym XF86AudioMicMute exec --no-startup-id $HOME/scripts/mute_mic
+
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/scripts/brightness inc
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/scripts/brightness dec
+
+bindsym XF86Favorites exec --no-startup-id $HOME/scripts/toggle_backlight
+
+# Application runner
+bindsym $mod+space exec --no-startup-id rofi -show drun -config $HOME/.config/rofi/sf_sway.rasi
+
+# Quick copy screenshot
+bindsym $mod+Print exec grim - | wl-copy -t image/png
+bindsym $mod+Shift+Print exec grim -g "$(slurp -d)" - | wl-copy -t image/png
+
+# Save screenshots
+bindsym --release Print exec grim $HOME/Pictures/Screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+bindsym Shift+Print exec grim -g "$(slurp -d)" $HOME/Pictures/Screenshots/$(date +'%Y-%m-%d-%H%M%S_grim.png')
+
+# Lock screen
+bindsym Control+Mod1+l exec swaylock -e -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg
+
+# Power options
+bindsym Control+Mod1+Delete exec $HOME/scripts/logout
+
+# }}}
+
+# Startup Applications {{{
+
+# Notifications
+exec mako
+
+# Waybar
+exec_always --no-startup-id $HOME/.config/waybar/waybar.sh
+
+# Gnome Policykit
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Lock screen when idle
+# exec swayidle -w \
+#     timeout 1500 'swaymsg "output * dpms off"' \
+#         resume 'swaymsg "output * dpms on"' \
+#     timeout 1800 'swaylock -e -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg' \
+#     before-sleep 'swaylock -e -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg'
+
+exec swayidle -w \
+    timeout 1500 'swaylock -f -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg' \
+    timeout 1800 'swaymsg "output * dpms off"' \
+         resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg'
+
+# }}}
+
+# Window Rules {{{
+
+# Telegram media viewer popup
+for_window [class="Telegram" title="Media viewer"] floating enable, border none, move position 0 px 0 px
+
+# Android Studio welcome screen
+for_window [class="jetbrains-studio" title="Welcome to Android Studio"] floating enable
+
+# Network Manager front end
+for_window [app_id="nm-connection-editor"] floating enable
+
+# Volume mixer
+for_window [app_id="pavucontrol"] floating enable
+
+# }}}
+
+# Configuration
+
+# Background
+output "eDP-1" background $HOME/Pictures/arc_flowers_1080.png fill
+# output "*" background #3e4452 solid_color
+
+# GTK Settings
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Arc-Dark'
+    gsettings set $gnome-schema icon-theme 'ArchLabs-Light'
+    gsettings set $gnome-schema cursor-theme 'Bibata Oil'
+}
+
+# Touchpad settings
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+    # events disabled
+    tap enabled
+    natural_scroll enabled
+    pointer_accel 0.3
+}

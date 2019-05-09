@@ -1,0 +1,66 @@
+{
+    "layer": "top",
+    "height": 30,
+    "modules-left": ["sway/workspaces", "custom/mediaplayer"],
+    "modules-center": ["custom/datetime"],
+    "modules-right": ["tray", "idle_inhibitor", "pulseaudio", "network", "battery"],
+
+    "battery": {
+            "format": "Bat: {capacity}%",
+            "format-charging": "Bat: {capacity}% <span font=\"8\"></span>",
+            "interval": 30,
+            "states": {
+                "warning": 25,
+                "critical": 10
+            },
+            "tooltip": false
+    },
+
+    "network": {
+        "format":"",
+        "format-wifi": "Net: {signaldBm} dBm",
+        "format-ethernet": "Net: Ethernet",
+        "format-disconnected": "Net: Disconnected",
+        "on-click": "nm-connection-editor",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "Vol: {volume}%{icon}",
+        "format-muted": "Vol: M{icon}",
+        "format-alt-click": "click-right",
+        "format-icons": {
+            "headphones": " ",
+            "default": ""
+        },
+        "scroll-step": 10,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+
+    "custom/datetime": {
+        "interval": 30,
+        "exec": "date '+%a %b %-d, %-I:%M %p'",
+        "tooltip": false
+    },
+
+    "idle_inhibitor": {
+        "format": "<span font=\"16\">{icon}</span>",
+        "format-icons": {
+            "activated": "",
+            "deactivated": "﯈"
+        },
+        "tooltip": false
+    },
+
+    "custom/mediaplayer": {
+        "format": "{}",
+        "exec": "python $HOME/scripts/player-mpris-tail.py --icon-playing '契' --icon-paused '' -f '{icon} {:artist:t18:{artist}:}{:artist: - :}{:t20:{title}:}'",
+        "on-click": "playerctl play-pause",
+        "tooltip": false
+    },
+    
+    "tray": {
+        "icon-size": "18"
+    }
+}

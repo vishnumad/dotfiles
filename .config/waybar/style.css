@@ -1,0 +1,39 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Input, RobotoMono Nerd Font, Roboto;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #292C37;
+    color: #F2F2F5;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background: transparent;
+    color: #5C627B;
+}
+
+#workspaces button.focused {
+    background: #69748D;
+    color: #F2F2F5;
+}
+
+#mode, #cpu, #memory, #network, #pulseaudio, #backlight {
+    margin: 0px 5px 0px 25px;
+}
+
+#custom-mediaplayer {
+    margin: 0px 5px 0px 30px;
+}
+
+#idle_inhibitor {
+    margin: 0px 5px 0px 25px;
+}
+
+#battery {
+    margin: 0px 15px 0px 25px;
+}
