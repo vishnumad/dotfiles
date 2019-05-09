@@ -15,3 +15,5 @@ alias ~='cd ~'
 alias mkdir='mkdir -pv'
 
 alias please=sudo
+
+alias colors='$HOME/scripts/colors'
