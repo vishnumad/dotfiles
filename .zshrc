@@ -20,7 +20,9 @@ autoload -Uz _zplugin
 # ZPlugin {{{
 
 # Prompt
-zplugin light subnixr/minimal
+# zplugin light subnixr/minimal
+zplugin ice pick"async.zsh" src"pure.zsh"
+zplugin light sindresorhus/pure
 
 zplugin ice wait"1" lucid atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
@@ -44,8 +46,14 @@ do
 done
 
 # Prompt Customization
-MNML_RPROMPT=(mnml_err mnml_git 'mnml_cwd 5 8')
-MNML_INFOLN=(mnml_err mnml_jobs mnml_uhp)
+# MNML_RPROMPT=(mnml_err mnml_git 'mnml_cwd 5 8')
+# Remove space after right prompt
+# ZLE_RPROMPT_INDENT=-1
+
+PURE_PROMPT_SYMBOL='λ'
+PURE_PROMPT_VICMD_SYMBOL='·'
+PURE_GIT_DOWN_ARROW='↓'
+PURE_GIT_UP_ARROW='↑'
 
 # Lazy load NVM
 export NVM_LAZY_LOAD=true
