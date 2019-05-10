@@ -6,6 +6,7 @@ source ~/.vim/startup/autocommands.vim
 inoremap jk <esc>
 
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 set breakindent
 set linebreak
@@ -13,11 +14,21 @@ set linebreak
 " Show line numbers
 set number
 
-" Only show column info in Ctrl+G
+" Show column info in Ctrl+G
 set noruler
 
 " Prevent delay for lightline when switching modes
 set ttimeoutlen=50
+
+filetype plugin on
+
+" Upper case word 
+inoremap <leader>u <esc>viwUea
+nnoremap <leader>u viwU<esc>e
+
+" Show color column
+set colorcolumn=+1
+let &colorcolumn = join(range(81,999), ',')
 
 " Save files as sudo with :W
 cmap W w !sudo tee % > /dev/null
@@ -29,9 +40,13 @@ set scrolloff=3
 nnoremap <Space> :
 vnoremap <Space> :
 
-" Quickly Show/Switch Buffers
-nnoremap <F5> :buffers<CR>:buffer<Space>
+" Quickly show buffer list
+nnoremap <F5> :buffers<CR>:
 
+" Disable netrw banner
+let g:netrw_banner=0
+
+" Open splits by default to the right and below
 set splitright
 set splitbelow
 

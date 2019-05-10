@@ -33,5 +33,6 @@ set statusline+=%1*\ %<%t%h%w%m%r\ %*                " File path + mods
 set statusline+=%3*%{GetBranchName()}%*              " Git branch
 set statusline+=%=                                   " Spacer
 set statusline+=%3*\ %l\ of\ %L\ %*                  " Line info
+" set statusline+=%3*\ %3l:%-3c\ %*
 set statusline+=%1*\ B%n\ %*                         " Buffer number
 

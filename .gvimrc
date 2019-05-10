@@ -1,2 +1,2 @@
 colorscheme slate
-set guifont=Iosevka\ Envy\ Code\ R\ 12
+set guifont=Input\ Mono\ Narrow\ 11

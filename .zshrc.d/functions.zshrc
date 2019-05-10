@@ -41,3 +41,8 @@ up() {
 search() {
     find . -iname "*$@*" | less
 }
+
+# Make and run C programs
+crun() {
+    make $1 && ./$1;
+}
