@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mins()
+{
+    echo `expr $1 '*' 60`
+}
+
+dim_timeout=$(mins 15)
+lock_timeout=$(mins 30)
+display_timeout=$(mins 20)
+
+echo $dim_timeout

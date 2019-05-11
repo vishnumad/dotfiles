@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Show rofi with power options
+option=$(echo -e "Logout\nShutdown\nReboot\nSuspend" | rofi -dmenu -i -p "power")
+
+case "$option" in
+    "Logout")
+        swaymsg exit
+        ;;
+    "Shutdown")
+        systemctl poweroff
+        ;;
+    "Reboot")
+        systemctl reboot
+        ;;
+    "Suspend")
+        systemctl suspend
+        ;;
+esac

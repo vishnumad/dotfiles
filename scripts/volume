@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function human_volume {
+    pamixer --get-volume-human
+}
+
+function real_volume {
+    pamixer --get-volume
+}
+
+function bar {
+    $HOME/scripts/getProgressString 20 "●" "○" `real_volume`
+}
+
+pamixer "$@"
+notify-send.sh --replace-file=/tmp/volume-noti "Volume: `human_volume`" "`bar`"
