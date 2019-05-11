@@ -1,8 +1,8 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Input, RobotoMono Nerd Font, Roboto;
-    font-size: 13px;
+    font-family: Roboto, Work Sans, Input, RobotoMono Nerd Font, Roboto;
+    font-size: 14px;
     min-height: 0;
 }
 
@@ -12,7 +12,7 @@ window#waybar {
 }
 
 #workspaces button {
-    padding: 0 8px;
+    padding: 0 7px;
     background: transparent;
     color: #5C627B;
 }

@@ -7,8 +7,8 @@
 
     "battery": {
             "format": "Bat: {capacity}%",
-            "format-charging": "Bat: {capacity}% <span font=\"8\"></span>",
-            "interval": 30,
+            "format-charging": "Bat: {capacity}% <span font=\"8\">⚡</span>",
+            "interval": 60,
             "states": {
                 "warning": 25,
                 "critical": 10
@@ -55,7 +55,7 @@
 
     "custom/mediaplayer": {
         "format": "{}",
-        "exec": "python $HOME/scripts/player-mpris-tail.py --icon-playing '契' --icon-paused '' -f '{icon} {:artist:t18:{artist}:}{:artist: - :}{:t20:{title}:}'",
+        "exec": "python $HOME/scripts/player-mpris-tail.py --icon-playing '契 ' --icon-paused '' -f '{icon} {:artist:t18:{artist}:}{:artist: - :}{:t20:{title}:}'",
         "on-click": "playerctl play-pause",
         "tooltip": false
     },

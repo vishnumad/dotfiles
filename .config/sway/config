@@ -30,7 +30,8 @@ smart_gaps on
 
 # -----------------------------------------------------------------------------
 # Font
-set $main_font pango:Input 10
+# set $main_font pango:Input 10
+set $main_font pango:Roboto 11
 font $main_font
 title_align left
 
@@ -261,7 +262,6 @@ exec_always {
 
 # Touchpad settings
 input "2:7:SynPS/2_Synaptics_TouchPad" {
-    # events disabled
     tap enabled
     natural_scroll enabled
     pointer_accel 0.3
