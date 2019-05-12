@@ -7,7 +7,7 @@
 
     "battery": {
             "format": "Bat: {capacity}%",
-            "format-charging": "Bat: {capacity}% <span font=\"8\">⚡</span>",
+            "format-charging": "Bat: {capacity}% <span font=\"9\">⚡</span>",
             "interval": 60,
             "states": {
                 "warning": 25,
