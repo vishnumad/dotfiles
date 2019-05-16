@@ -103,19 +103,19 @@ tabspaces: 8
 # font:
 #   # Normal (roman) font face
 #   normal:
-#     family: Input Mono Narrow
+#     family: Iosevka
 #     # The `style` can be specified to pick a specific face.
 #     style: Regular
 
 #   # Bold font face
 #   bold:
-#     family: Input Mono Narrow
+#     family: Iosevka
 #     # The `style` can be specified to pick a specific face.
 #     style: Medium
 
 #   # Italic font face
 #   italic:
-#     family: Input Mono Narrow
+#     family: Iosevka
 #     # The `style` can be specified to pick a specific face.
 #     style: Italic 
 
@@ -139,7 +139,7 @@ font:
     style: Italic 
 
   # Point size
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
