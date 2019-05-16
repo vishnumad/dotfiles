@@ -1,12 +1,26 @@
 #!/bin/bash
 
-mins()
-{
+
+killall -q swayidle
+while pgrep -x swayidle >/dev/null; do sleep 1; done
+
+mins() {
     echo `expr $1 '*' 60`
 }
 
 dim_timeout=$(mins 15)
-lock_timeout=$(mins 30)
+lock_timeout=$(mins 17)
 display_timeout=$(mins 20)
 
-echo $dim_timeout
+# dim_timeout=10
+# lock_timeout=15
+# display_timeout=30
+
+swayidle -w \
+    timeout $dim_timeout '$HOME/scripts/dim_screen' \
+        resume '$HOME/scripts/dim_screen restore' \
+    timeout $lock_timeout 'swaylock -f -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg' \
+    timeout $display_timeout 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg'
+
