@@ -1,11 +1,12 @@
 #!/bin/bash
 
 bar() {
-    $HOME/scripts/getProgressString 20 "●" "○" $1
+    # $HOME/scripts/getProgressString 20 "●" "○" $1
+    $HOME/scripts/getProgressString 30 "━" "╶" $1
 }
 
 set_brightness() {
-    echo $1 | sudo tee /sys/class/backlight/intel_backlight/brightness
+    echo $1 | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
 }
 
 notify() {
@@ -15,7 +16,7 @@ notify() {
 
 max=`cat /sys/class/backlight/intel_backlight/max_brightness`
 current=`cat /sys/class/backlight/intel_backlight/brightness`
-step=`expr $max / 10`
+step=`expr $max / 20`
 min=1
 
 case "$1" in
@@ -28,6 +29,7 @@ case "$1" in
         set_brightness $final
         notify $final $max
         ;;
+
     "dec")
         final=`expr $current - $step`
         if [ $final -lt $min ]
@@ -37,6 +39,25 @@ case "$1" in
         set_brightness $final
         notify $final $max
         ;;
+
+    "getVal")
+        echo $current
+        ;;
+
+    "getPct")
+        pct=`awk -v cur="$current" -v max="$max" 'BEGIN{ printf("%.0f", cur/max*100) }'`
+        echo $pct
+        ;;
+
+    "setVal")
+        set_brightness $2
+        ;;
+
+    "setPct")
+        final=`awk -v pct="$2" -v max="$max" 'BEGIN{ printf("%.0f", pct/100*max) }'`
+        set_brightness $final
+        ;;
+
     *)
         echo "Invalid parameter"
         exit 1
