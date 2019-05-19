@@ -1,8 +1,8 @@
 #!/bin/bash
 
 bar() {
-    # $HOME/scripts/getProgressString 20 "●" "○" $1
-    $HOME/scripts/getProgressString 30 "━" "╶" $1
+    # $HOME/scripts/getProgressString 20 "━" "╶" $1
+    $HOME/scripts/progress 20 "▪" "▫" $1
 }
 
 set_brightness() {

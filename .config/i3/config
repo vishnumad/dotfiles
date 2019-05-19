@@ -157,18 +157,18 @@ bindsym $mod+g exec --no-startup-id "if [ $(i3-msg -t get_tree | jq -r \
 # Colors {{{
 
 # Focused colors
-set $f_border     "#69748d"
-set $f_indicator  "#acb2c1"
-set $fi_bg        "#292c37"
+set $f_border     "#69748D"
+set $f_indicator  "#ACB2C1"
+set $fi_bg        "#292C37"
 
 # Unfocused colors
-set $uf_border    "#292c37"
-set $uf_indicator "#292c37"
+set $uf_border    "#292C37"
+set $uf_indicator "#292C37"
 
 # Title text colors
-set $f_text       "#f2f2f5"
-set $f_text_h     "#f2f2f5"
-set $uf_text      "#5c627b"
+set $f_text       "#F2F2F5"
+set $f_text_h     "#F2F2F5"
+set $uf_text      "#5C627B"
 
 #<colorclass>           <border>    <background> <text>    <indicator>   <child_border>
 client.focused          $f_border   $f_border    $f_text_h $f_indicator  $f_border

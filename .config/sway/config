@@ -29,7 +29,8 @@ smart_gaps on
 
 # -----------------------------------------------------------------------------
 # Font
-set $main_font pango:Roboto 11
+# set $main_font pango:Roboto 11
+set $main_font pango:Work Sans 11
 font $main_font
 title_align left
 
@@ -57,7 +58,7 @@ bindsym $mod+Shift+q kill
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
-# exit i3 (logs you out of your X session)
+# exit sway 
 bindsym $mod+Shift+e exec \
     "swaynag -t warning -m 'Do you want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'"
 
@@ -242,6 +243,7 @@ for_window [app_id="pavucontrol"] floating enable
 # Configuration
 
 # Background
+output "*" background #2F343F solid_color
 output "eDP-1" background $HOME/Pictures/arc_flowers_1080.png fill
 
 # GTK Settings

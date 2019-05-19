@@ -9,8 +9,8 @@ function real_volume {
 }
 
 function bar {
-    # $HOME/scripts/getProgressString 20 "●" "○" `real_volume`
-    $HOME/scripts/getProgressString 30 "━" "╶" `real_volume`
+    # $HOME/scripts/getProgressString 20 "━" "╶" `real_volume`
+    $HOME/scripts/progress 20 "▪" "▫" `real_volume` 
 }
 
 pamixer "$@"
