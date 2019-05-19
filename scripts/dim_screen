@@ -1,0 +1,21 @@
+#!/bin/bash
+
+prev_file="/tmp/prev_brightness"
+
+if [ -z "$1" ]
+then
+    # Dim
+    cur=`$HOME/scripts/brightness getVal`
+    echo $cur > $prev_file
+
+    to=1
+elif [ "$1" = "restore" ]
+then
+    # Restore
+    to=$(cat "$prev_file")
+else
+    exit 1
+fi
+
+$HOME/scripts/brightness setVal $to
+

@@ -19,7 +19,6 @@ set $border_size 2
 set $gap_size 8
 
 default_border pixel $border_size
-# default_border normal 0
 default_floating_border normal 0
 smart_borders on
 
@@ -30,8 +29,8 @@ smart_gaps on
 
 # -----------------------------------------------------------------------------
 # Font
-# set $main_font pango:Input 10
-set $main_font pango:Roboto 11
+# set $main_font pango:Roboto 11
+set $main_font pango:Work Sans 11
 font $main_font
 title_align left
 
@@ -59,7 +58,7 @@ bindsym $mod+Shift+q kill
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
-# exit i3 (logs you out of your X session)
+# exit sway 
 bindsym $mod+Shift+e exec \
     "swaynag -t warning -m 'Do you want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'"
 
@@ -175,18 +174,18 @@ client.urgent           $border_f  $bg_uf $text_f  $indic_f    $border_uf
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # XF86 Keys
-bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/scripts/volume -i 5
-bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/scripts/volume -d 5
-bindsym XF86AudioMute exec --no-startup-id $HOME/scripts/volume -t
-bindsym XF86AudioMicMute exec --no-startup-id $HOME/scripts/mute_mic
+bindsym XF86AudioRaiseVolume exec $HOME/scripts/volume -i 5
+bindsym XF86AudioLowerVolume exec $HOME/scripts/volume -d 5
+bindsym XF86AudioMute exec $HOME/scripts/volume -t
+bindsym XF86AudioMicMute exec $HOME/scripts/mute_mic
 
-bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/scripts/brightness inc
-bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/scripts/brightness dec
+bindsym XF86MonBrightnessUp exec $HOME/scripts/brightness inc
+bindsym XF86MonBrightnessDown exec $HOME/scripts/brightness dec
 
-bindsym XF86Favorites exec --no-startup-id $HOME/scripts/toggle_backlight
+bindsym XF86Favorites exec $HOME/scripts/toggle_backlight
 
 # Application runner
-bindsym $mod+space exec --no-startup-id rofi -show drun -config $HOME/.config/rofi/sf_sway.rasi
+bindsym $mod+space exec rofi -show drun -config $HOME/.config/rofi/sf_sway.rasi
 
 # Quick copy screenshot
 bindsym $mod+Print exec grim - | wl-copy -t image/png
@@ -210,23 +209,18 @@ bindsym Control+Mod1+Delete exec $HOME/scripts/logout
 exec mako
 
 # Waybar
-exec_always --no-startup-id $HOME/.config/waybar/waybar.sh
+exec_always $HOME/.config/waybar/waybar.sh
 
 # Gnome Policykit
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# Lock screen when idle
 # exec swayidle -w \
-#     timeout 1500 'swaymsg "output * dpms off"' \
-#         resume 'swaymsg "output * dpms on"' \
-#     timeout 1800 'swaylock -e -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg' \
-#     before-sleep 'swaylock -e -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg'
+#     timeout 1500 'swaylock -f -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg' \
+#     timeout 1800 'swaymsg "output * dpms off"' \
+#          resume 'swaymsg "output * dpms on"' \
+#     before-sleep 'swaylock -f -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg'
 
-exec swayidle -w \
-    timeout 1500 'swaylock -f -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg' \
-    timeout 1800 'swaymsg "output * dpms off"' \
-         resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -i $HOME/Pictures/Backgrounds/aD7PxAG.jpg'
+exec_always $HOME/scripts/idle
 
 # }}}
 
@@ -249,8 +243,8 @@ for_window [app_id="pavucontrol"] floating enable
 # Configuration
 
 # Background
+output "*" background #2F343F solid_color
 output "eDP-1" background $HOME/Pictures/arc_flowers_1080.png fill
-# output "*" background #3e4452 solid_color
 
 # GTK Settings
 set $gnome-schema org.gnome.desktop.interface

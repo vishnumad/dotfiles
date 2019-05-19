@@ -45,11 +45,6 @@ do
     source "${file}"
 done
 
-# Prompt Customization
-# MNML_RPROMPT=(mnml_err mnml_git 'mnml_cwd 5 8')
-# Remove space after right prompt
-# ZLE_RPROMPT_INDENT=-1
-
 PURE_PROMPT_SYMBOL='λ'
 PURE_PROMPT_VICMD_SYMBOL='·'
 PURE_GIT_DOWN_ARROW='↓'
