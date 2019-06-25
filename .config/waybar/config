@@ -45,7 +45,7 @@
     },
 
     "idle_inhibitor": {
-        "format": "<span font=\"16\">{icon}</span>",
+        "format": "<span font=\"12\">{icon}</span>",
         "format-icons": {
             "activated": "",
             "deactivated": "﯈"

@@ -16,7 +16,7 @@ configuration {
     transparent: rgba(0, 0, 0, 0);
     urgentcolor: #e53714;
 
-    font: "Work Sans 13";
+    font: "Roboto 15";
 
     border-color: @background;
     separatorcolor: @foreground;

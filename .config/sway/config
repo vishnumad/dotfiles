@@ -29,8 +29,7 @@ smart_gaps on
 
 # -----------------------------------------------------------------------------
 # Font
-# set $main_font pango:Roboto 11
-set $main_font pango:Work Sans 11
+set $main_font pango:Roboto 11
 font $main_font
 title_align left
 
@@ -171,7 +170,7 @@ client.urgent           $border_f  $bg_uf $text_f  $indic_f    $border_uf
 # Custom Keybindings {{{
 
 # Default terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec kitty --single-instance
 
 # XF86 Keys
 bindsym XF86AudioRaiseVolume exec $HOME/scripts/volume -i 5
