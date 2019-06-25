@@ -30,8 +30,8 @@ nnoremap <leader>u viwU<esc>e
 set colorcolumn=+1
 let &colorcolumn = join(range(81,999), ',')
 
-" Save files as sudo with :W
-cmap W w !sudo tee % > /dev/null
+" Save files as sudo
+nnoremap <leader>w :w !sudo tee % > /dev/null
 
 set scrolljump=5
 set scrolloff=3
