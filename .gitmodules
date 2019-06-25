@@ -1,3 +1,6 @@
 [submodule ".themes/Ant-Dracula"]
 	path = .themes/Ant-Dracula
 	url = https://github.com/EliverLara/Ant-Dracula.git
+[submodule ".config/kitty/kitty-themes"]
+	path = .config/kitty/kitty-themes
+	url = https://github.com/dexpota/kitty-themes.git
